@@ -3,12 +3,13 @@ package com.lv;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class MainMergeHotSpot {
 
     public static void main(String[] args) throws Exception {
-        File inFile = new File("C:\\E\\dataSet\\2018-05-14\\selectedHotSpot(200)+sensor.txt");
+        File inFile = new File("C:\\E\\dataSet\\2018-05-14\\selectedHotSpot(100)+sensor.txt");
 
         FileReader fileReader = new FileReader(inFile);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -33,7 +34,7 @@ public class MainMergeHotSpot {
             MergeOldHotSpot oldHotSpot = new MergeOldHotSpot(x, y, m, n, sensor);
 
             for (MergeNewHotSpot mergeNewHotSpot : mergeNewHotSpotArrayList) {
-                if (Points.getDistanceBetweenAndMergeOldHotSpotAndMergeNewHotSpot(oldHotSpot,mergeNewHotSpot) < 30) {
+                if (Points.getDistanceBetweenAndMergeOldHotSpotAndMergeNewHotSpot(oldHotSpot,mergeNewHotSpot) < 70) {
                     mergeNewHotSpot.getMergeOldHotSpotArrayList().add(oldHotSpot);
                 }
             }
@@ -45,7 +46,34 @@ public class MainMergeHotSpot {
                 selectedMergeNewHotSpot.add(mergeNewHotSpot);
             }
         }
-        System.out.println(selectedMergeNewHotSpot.size());
+
+        File outFile = new File("C:\\E\\dataSet\\2018-05-15\\2009-03-09\\阈值100(半径70).txt");
+        FileWriter fileWriter = new FileWriter(outFile,true);
+        for (MergeNewHotSpot mergeNewHotSpot : selectedMergeNewHotSpot) {
+
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(mergeNewHotSpot.getX());
+
+            stringBuilder.append(",");
+            stringBuilder.append(mergeNewHotSpot.getY());
+
+            stringBuilder.append(",");
+            stringBuilder.append(mergeNewHotSpot.getM());
+
+            stringBuilder.append(",");
+            stringBuilder.append(mergeNewHotSpot.getN());
+            stringBuilder.append("                     ");
+            ArrayList<MergeOldHotSpot> mergeOldHotSpotArrayList = mergeNewHotSpot.getMergeOldHotSpotArrayList();
+            for (MergeOldHotSpot mergeOldHotSpot : mergeOldHotSpotArrayList) {
+                stringBuilder.append(",");
+                stringBuilder.append(mergeOldHotSpot.getSensor());
+            }
+
+            stringBuilder.append("\n");
+            fileWriter.write(stringBuilder.toString());
+
+        }
+        fileWriter.close();
 
     }
 }
