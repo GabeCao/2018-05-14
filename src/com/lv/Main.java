@@ -44,84 +44,23 @@ public class Main {
             }
             ArrayList<HotSpot> selectedHotSpots = new ArrayList<>();
             for (HotSpot hotSpot : oldHotSpotArrayList) {
-                if (hotSpot.getPointArrayList().size() > 500) {
+                if (hotSpot.getPointArrayList().size() > 200) {
                     selectedHotSpots.add(hotSpot);
                 }
                 hotSpot.getPointArrayList().clear();
             }
 
-            File outFile = new File("C:\\E\\dataSet\\2018-05-14\\选取的HotSpot\\" + file.getName());
+            File outFile = new File("C:\\E\\dataSet\\2018-05-14\\selectedHotSpot(200)+sensor.txt");
             FileWriter fileWriter = new FileWriter(outFile,true);
 
             for (HotSpot hotSpot : selectedHotSpots) {
-                String outString = hotSpot.getX() + "," + hotSpot.getY() + "," + hotSpot.getM() + "," + hotSpot.getN() + "\n";
+                String outString = hotSpot.getX() + "," + hotSpot.getY() + "," + hotSpot.getM() + "," + hotSpot.getN() +
+                        "," + file.getName().substring(0,file.getName().indexOf("."))+"\n";
                 fileWriter.write(outString);
             }
             fileWriter.close();
 
             System.out.println("写入完成...............");
         }
-
-        /*File file = files[0];*/
-        /*FileReader fileReader = new FileReader(file);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String line;
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println(new Date() + "........................");
-        while ((line = bufferedReader.readLine()) != null) {
-            String[] data = line.split(",");
-            double x = Double.parseDouble(data[0]);
-            double y = Double.parseDouble(data[1]);
-            Date date = simpleDateFormat.parse(data[2] + " " + data[3]);
-            Point point = new Point(x, y, date);
-
-            for (HotSpot hotSpot : oldHotSpotArrayList) {
-                if (Points.getDistanceBetweenAndPontAndHotSpot(point,hotSpot) < 10) {
-                    hotSpot.getPointArrayList().add(point);
-                }
-            }
-        }
-        System.out.println(new Date() + "........................");
-        ArrayList<HotSpot> selectedHotSpot = new ArrayList<>();
-
-        for (HotSpot hotSpot : oldHotSpotArrayList) {
-            if (hotSpot.getPointArrayList().size() > 500) {
-                selectedHotSpot.add(hotSpot);
-            }
-        }
-
-        File outFile = new File("C:\\E\\dataSet\\2018-05-14\\选取的HotSpot\\" + file.getName());
-        FileWriter fileWriter = new FileWriter(outFile,true);
-        for (HotSpot hotSpot : selectedHotSpot) {
-            fileWriter.write(hotSpot.toString());
-        }
-        fileWriter.close();*/
-
-
-        /*for (File file : files) {
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line;
-
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] data = line.split(",");
-                double x = Double.parseDouble(data[0]);
-                double y = Double.parseDouble(data[1]);
-                Date date = simpleDateFormat.parse(data[2] + " " + data[3]);
-                Point point = new Point(x, y, date);
-
-                for (HotSpot hotSpot : oldHotSpotArrayList) {
-                    if (Points.getDistanceBetweenAndPontAndHotSpot(point,hotSpot) < 10) {
-                        hotSpot.getPointArrayList().add(point);
-                    }
-                }
-            }
-        }*/
-
-
-
     }
 }
