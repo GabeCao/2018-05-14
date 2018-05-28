@@ -45,7 +45,7 @@ public class Main {
             }
             ArrayList<HotSpot> selectedHotSpots = new ArrayList<>();
             for (HotSpot hotSpot : oldHotSpotArrayList) {
-                if (hotSpot.getNumberOfPoint() > 100) {
+                if (hotSpot.getNumberOfPoint() > 300) {
                     selectedHotSpots.add(hotSpot);
 
                     for (Point point : hotSpot.getPointArrayList()) {
@@ -65,7 +65,7 @@ public class Main {
 
             }
 
-            Map<HotSpot, Set<Integer>> hotSpotSetMap = new HashMap<>();
+            /*Map<HotSpot, Set<Integer>> hotSpotSetMap = new HashMap<>();
             for (HotSpot hotSpot: selectedHotSpots) {
                 Set<Integer> integerSet = new HashSet<>();
                 for (Point point : hotSpot.getPointArrayList()) {
@@ -77,11 +77,11 @@ public class Main {
                 }
                 hotSpotSetMap.put(hotSpot, integerSet);
             }
-
-            File outFile = new File("C:\\E\\dataSet\\2018-05-27\\selectedHotSpot(100)+sensor.txt");
+*/
+            File outFile = new File("C:\\E\\dataSet\\2018-05-27\\初始备选点半径20米，第二次的备选点，半径70米\\selectedHotSpot(300)+sensor.txt");
             FileWriter fileWriter = new FileWriter(outFile,true);
 
-            for (Map.Entry<HotSpot, Set<Integer>> entry : hotSpotSetMap.entrySet()) {
+            /*for (Map.Entry<HotSpot, Set<Integer>> entry : hotSpotSetMap.entrySet()) {
                 String outString = entry.getKey().getX() + "," + entry.getKey().getY() + ","
                         + entry.getKey().getM() + "," + entry.getKey().getN() +
                         "," + file.getName().substring(0,file.getName().indexOf("."));
@@ -90,12 +90,12 @@ public class Main {
                     outString += "," +integer;
                 }
                 fileWriter.write(outString + "\n");
+            }*/
+            for (HotSpot hotSpot : selectedHotSpots) {
+                String outString = hotSpot.getX() + "," + hotSpot.getY() + "," + hotSpot.getM() + "," + hotSpot.getN() +
+                        "," + file.getName().substring(0,file.getName().indexOf("."))+"\n";
+                fileWriter.write(outString);
             }
-//            for (HotSpot hotSpot : selectedHotSpots) {
-//                String outString = hotSpot.getX() + "," + hotSpot.getY() + "," + hotSpot.getM() + "," + hotSpot.getN() +
-//                        "," + file.getName().substring(0,file.getName().indexOf("."))+"\n";
-//                fileWriter.write(outString);
-//            }
             fileWriter.close();
 
             System.out.println("写入完成...............");

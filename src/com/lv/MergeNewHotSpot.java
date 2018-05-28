@@ -10,6 +10,16 @@ public class MergeNewHotSpot {
     //HotSpot 在二维数组中的位置
     private int m;
     private int n;
+    //给新的备选点编号
+    private int number;
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
 
     //包括的 mergeOldHotSpot
     ArrayList<MergeOldHotSpot> mergeOldHotSpotArrayList;
