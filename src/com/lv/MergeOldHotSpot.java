@@ -8,9 +8,9 @@ public class MergeOldHotSpot {
     private int m;
     private int n;
 
-    private int sensor;
+    private String sensor;
 
-    public MergeOldHotSpot(double x, double y, int m, int n, int sensor) {
+    public MergeOldHotSpot(double x, double y, int m, int n, String sensor) {
         this.x = x;
         this.y = y;
         this.m = m;
@@ -61,11 +61,11 @@ public class MergeOldHotSpot {
         this.n = n;
     }
 
-    public int getSensor() {
+    public String getSensor() {
         return sensor;
     }
 
-    public void setSensor(int sensor) {
+    public void setSensor(String sensor) {
         this.sensor = sensor;
     }
 }

@@ -30,11 +30,11 @@ public class MainMergeHotSpot {
             double y = Double.parseDouble(data[1]);
             int m = Integer.parseInt(data[2]);
             int n = Integer.parseInt(data[3]);
-            int sensor = Integer.parseInt(data[4]);
+            String sensor = data[4];
             MergeOldHotSpot oldHotSpot = new MergeOldHotSpot(x, y, m, n, sensor);
 
             for (MergeNewHotSpot mergeNewHotSpot : mergeNewHotSpotArrayList) {
-                if (Points.getDistanceBetweenAndMergeOldHotSpotAndMergeNewHotSpot(oldHotSpot,mergeNewHotSpot) < 70) {
+                if (Points.getDistanceBetweenAndMergeOldHotSpotAndMergeNewHotSpot(oldHotSpot,mergeNewHotSpot) < 60) {
                     mergeNewHotSpot.getMergeOldHotSpotArrayList().add(oldHotSpot);
                 }
             }
@@ -47,7 +47,7 @@ public class MainMergeHotSpot {
             }
         }
 
-        File outFile = new File("C:\\E\\dataSet\\2018-05-15\\2009-03-09\\阈值100(半径70).txt");
+        File outFile = new File("C:\\E\\dataSet\\2018-05-27\\result.txt");
         FileWriter fileWriter = new FileWriter(outFile,true);
         for (MergeNewHotSpot mergeNewHotSpot : selectedMergeNewHotSpot) {
 

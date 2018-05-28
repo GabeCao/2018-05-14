@@ -12,6 +12,16 @@ public class HotSpot {
     private int n;
     //保存周围的Point
     private ArrayList<Point> pointArrayList;
+    //hotspot保存周围的Point 的flag = true 的个数
+    private int numberOfPoint;
+
+    public int getNumberOfPoint() {
+        return numberOfPoint;
+    }
+
+    public void setNumberOfPoint(int numberOfPoint) {
+        this.numberOfPoint = numberOfPoint;
+    }
 
     //给 HotSpot 编一个号
     private int number;
@@ -46,6 +56,7 @@ public class HotSpot {
         this.m = m;
         this.n = n;
         this.pointArrayList = new ArrayList<>();
+        numberOfPoint = 0;
     }
 
     @Override

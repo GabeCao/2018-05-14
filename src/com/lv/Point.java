@@ -8,6 +8,16 @@ public class Point {
     private double y;
     private Date date;
 
+    private boolean flag;
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
     public Point(double x, double y, Date date) {
         this.x = x;
         this.y = y;
