@@ -34,9 +34,9 @@ public class HotSpots {
     }
 
     public static HotSpot[][] getNewHotSpots() {
-        double r = 60;
+        double r = 50;
         double hotSpotDistance = Math.sqrt(3) * r;
-        HotSpot[][] hotSpots = new HotSpot[12][16];
+        HotSpot[][] hotSpots = new HotSpot[15][19];
         int m = 0;
         for (double i = (hotSpotDistance / 2); i <= area.x; i += hotSpotDistance, m++) {
             int n = 0;

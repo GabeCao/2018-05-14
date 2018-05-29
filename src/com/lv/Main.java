@@ -32,14 +32,12 @@ public class Main {
                 double y = Double.parseDouble(data[1]);
                 Date date = simpleDateFormat.parse(data[2]);
                 Point point = new Point(x, y, date);
-                point.setFlag(false);
 
                 for (HotSpot hotSpot : oldHotSpotArrayList) {
                     //第一次半径
 
-                    if (Points.getDistanceBetweenAndPontAndHotSpot(point,hotSpot) < 10) {
+                    if (Points.getDistanceBetweenAndPontAndHotSpot(point,hotSpot) < 10/*旧备选点的半径*/) {
                         hotSpot.getPointArrayList().add(point);
-                        hotSpot.setNumberOfPoint(hotSpot.getNumberOfPoint() + 1);
                     }
                 }
             }
@@ -47,27 +45,14 @@ public class Main {
             for (HotSpot hotSpot : oldHotSpotArrayList) {
                 //阈值
 
-                if (hotSpot.getNumberOfPoint() > 200) {
+                if (hotSpot.getPointArrayList().size() > 400) {
                     selectedHotSpots.add(hotSpot);
-
-                    for (Point point : hotSpot.getPointArrayList()) {
-                        point.setFlag(true);
-                    }
-
-                    for (HotSpot hotSpot1 : oldHotSpotArrayList) {
-                        hotSpot1.setNumberOfPoint(0);
-                        for (Point point : hotSpot1.getPointArrayList()) {
-                            if (point.isFlag() == false) {
-                                hotSpot1.setNumberOfPoint(hotSpot1.getNumberOfPoint() + 1);
-                            }
-                        }
-                    }
 
                 }
 
             }
 
-            File outFile = new File("C:\\E\\dataSet\\2018-05-27\\阈值200\\10-40\\selectedHotSpot+sensor.txt");
+            File outFile = new File("C:\\E\\dataSet\\2018-05-27\\阈值400\\10-50\\selectedHotspot.txt");
             FileWriter fileWriter = new FileWriter(outFile,true);
             for (HotSpot hotSpot : selectedHotSpots) {
                 String outString = hotSpot.getX() + "," + hotSpot.getY() + "," + hotSpot.getM() + "," + hotSpot.getN() +
