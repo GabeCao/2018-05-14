@@ -7,9 +7,9 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class MainMergeHotSpot {
-
+    //获得第二次的备选点
     public static void main(String[] args) throws Exception {
-        File inFile = new File("C:\\E\\dataSet\\2018-05-27\\初始备选点半径20米，第二次的备选点，半径70米\\selectedHotSpot(300)+sensor.txt");
+        File inFile = new File("C:\\E\\dataSet\\2018-05-27\\阈值200\\10-60\\selectedHotSpot+sensor.txt");
 
         FileReader fileReader = new FileReader(inFile);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -34,7 +34,8 @@ public class MainMergeHotSpot {
             MergeOldHotSpot oldHotSpot = new MergeOldHotSpot(x, y, m, n, sensor);
 
             for (MergeNewHotSpot mergeNewHotSpot : mergeNewHotSpotArrayList) {
-                if (Points.getDistanceBetweenAndMergeOldHotSpotAndMergeNewHotSpot(oldHotSpot,mergeNewHotSpot) < 70) {
+                //第二次备选点的半径
+                if (Points.getDistanceBetweenAndMergeOldHotSpotAndMergeNewHotSpot(oldHotSpot,mergeNewHotSpot) < 60) {
                     mergeNewHotSpot.getMergeOldHotSpotArrayList().add(oldHotSpot);
                 }
             }
@@ -49,7 +50,7 @@ public class MainMergeHotSpot {
             }
         }
 
-        File outFile = new File("C:\\E\\dataSet\\2018-05-27\\初始备选点半径20米，第二次的备选点，半径70米\\result(300).txt");
+        File outFile = new File("C:\\E\\dataSet\\2018-05-27\\阈值200\\10-60\\result.txt");
         FileWriter fileWriter = new FileWriter(outFile,true);
         for (MergeNewHotSpot mergeNewHotSpot : selectedMergeNewHotSpot) {
 
