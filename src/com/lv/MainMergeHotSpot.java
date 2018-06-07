@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class MainMergeHotSpot {
     //获得第二次的备选点
     public static void main(String[] args) throws Exception {
-        File inFile = new File("C:\\E\\dataSet\\2018-05-27\\阈值400\\10-50\\selectedHotspot.txt");
+        File inFile = new File("C:\\E\\dataSet\\2018-05-29\\四秒\\阈值300\\selectedHotspot.txt");
 
         FileReader fileReader = new FileReader(inFile);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -50,7 +50,7 @@ public class MainMergeHotSpot {
             }
         }
 
-        File outFile = new File("C:\\E\\dataSet\\2018-05-27\\阈值400\\10-50\\result.txt");
+        File outFile = new File("C:\\E\\dataSet\\2018-05-29\\四秒\\阈值300\\result.txt");
         FileWriter fileWriter = new FileWriter(outFile,true);
         for (MergeNewHotSpot mergeNewHotSpot : selectedMergeNewHotSpot) {
 

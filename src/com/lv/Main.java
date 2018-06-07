@@ -10,7 +10,7 @@ import java.util.*;
 public class Main {
 //获得第一次的备选点
     public static void main(String[] args) throws Exception{
-        String fileFolderPath = "C:\\E\\dataSet\\2018-05-27\\2018-05-27(去掉相同的时间点)";
+        String fileFolderPath = "C:\\E\\dataSet\\2018-05-29\\四秒\\sensor数据四秒";
         File fileFolder = new File(fileFolderPath);
         File[] files = fileFolder.listFiles();
 
@@ -45,14 +45,14 @@ public class Main {
             for (HotSpot hotSpot : oldHotSpotArrayList) {
                 //阈值
 
-                if (hotSpot.getPointArrayList().size() > 400) {
+                if (hotSpot.getPointArrayList().size() > 300) {
                     selectedHotSpots.add(hotSpot);
 
                 }
 
             }
 
-            File outFile = new File("C:\\E\\dataSet\\2018-05-27\\阈值400\\10-50\\selectedHotspot.txt");
+            File outFile = new File("C:\\E\\dataSet\\2018-05-29\\四秒\\阈值300\\selectedHotspot.txt");
             FileWriter fileWriter = new FileWriter(outFile,true);
             for (HotSpot hotSpot : selectedHotSpots) {
                 String outString = hotSpot.getX() + "," + hotSpot.getY() + "," + hotSpot.getM() + "," + hotSpot.getN() +
